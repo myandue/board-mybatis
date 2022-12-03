@@ -1,32 +1,33 @@
 package com.example.boardmybatis.repository;
 
 import com.example.boardmybatis.domain.Article;
+import com.example.boardmybatis.mapper.ArticleMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
-import java.util.HashMap;
-import java.util.Map;
+@Repository
+@RequiredArgsConstructor
+public class MybatisArticleRepository implements ArticleRepository{
 
-public class MemoryArticleRepository implements ArticleRepository{
-
-    private static Map<Integer, Article> articleMap = new HashMap<>();
+    private final ArticleMapper mapper;
 
     @Override
     public void save(Article article) {
-        articleMap.put(article.getId(),article);
+        mapper.insert(article);
     }
 
     @Override
     public Article findById(int id) {
-        return articleMap.get(id);
+        return mapper.getById(id);
     }
 
     @Override
     public void edit(Article article) {
-
+        mapper.update(article);
     }
 
     @Override
     public void delete(int id) {
-
+        mapper.delete(id);
     }
 }

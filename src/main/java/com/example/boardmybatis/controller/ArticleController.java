@@ -5,10 +5,7 @@ import com.example.boardmybatis.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/article")
@@ -35,4 +32,22 @@ public class ArticleController {
         return "/article/detail";
     }
 
+    @GetMapping("/{id}/edit")
+    public String getEditArticle(Model model,
+                                 @PathVariable("id") int id){
+        model.addAttribute("article",articleService.findById(id));
+        return "/article/edit";
+    }
+
+    @PutMapping("/{id}/edit")
+    public String putEditArticle(Article article){
+        articleService.edit(article);
+        return "redirect:/article/"+article.getId();
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public String deleteArticle(@PathVariable("id") int id){
+        articleService.delete(id);
+        return "redirect:/";
+    }
 }

@@ -18,4 +18,12 @@ public class ArticleService {
     public Article findById(int id){
         return articleRepository.findById(id);
     }
+
+    public void edit(Article article){
+        articleRepository.edit(article);
+    }
+
+    public void delete(int id){
+        articleRepository.delete(id);
+    }
 }

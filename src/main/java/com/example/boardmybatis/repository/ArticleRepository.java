@@ -6,4 +6,6 @@ public interface ArticleRepository {
 
     void save(Article article);
     Article findById(int id);
+    void edit(Article article);
+    void delete(int id);
 }

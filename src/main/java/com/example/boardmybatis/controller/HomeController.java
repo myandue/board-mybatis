@@ -28,6 +28,6 @@ public class HomeController {
     @PostMapping("/join")
     public String postJoin(User user){
         userService.join(user);
-        return "redirect:/";
+        return "redirect:user/"+user.getId();
     }
 }
