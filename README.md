@@ -1,5 +1,6 @@
 # board-mybatis
 
+
 <br>
 
 ## 목차
@@ -47,7 +48,6 @@
 
 ## 진행사항
 
-<p align="justify">
 <h3>nav</h3>
 <ul>
 <li>홈 게시글작성(->로그인페이지로 넘김) 회원가입 로그인</li>
@@ -57,11 +57,14 @@
 <h3>home</h3>
 <ul>
 <li>'/' : 게시글 리스트(게시글 타이틀, 조회수, 작성자(profie링크)), 게시글 검색, 페이징처리</li>
+<li>'/join' : 회원가입 -> 이름/추후 구현/이름, userId, pw, pw 확인</li>
+<li>'/login' : 로그인 -> 이름/추후 구현/userId, pw</li>
 </ul>
 
 <h3>article</h3>
 <small>필드 : id, 타이틀, 내용, 파일이름, 파일경로, 작성자, 조회수(추후 추가)</small>
 <ul>
+<li>'/article/upload : 게시글 작성</li>
 <li>'/article/{id}' : 게시글 view(게시글 타이틀, 내용, 파일, 조회수, 작성자(profile링크), 댓글(댓글 내용, 작성자(profile링크))</li>
 <li>'/article/{id}/edit' : 해당 게시글 수정 -> 작성자만 접근 가능</li>
 <li>'/article/{id}/delete' : 해당 게시글 삭제 -> 작성자만 접근 가능, 경고 문구</li>
@@ -74,7 +77,7 @@
 <li>'/user/{id}/edit' : user profile 수정
 <li>'/user/{id}/delete' : user 삭제
 </ul>
-</p>
+
 
 <br>
 
