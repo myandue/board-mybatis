@@ -2,8 +2,11 @@ package com.example.boardmybatis.repository;
 
 import com.example.boardmybatis.domain.User;
 
+import java.util.Optional;
+
 public interface UserRepository {
 
     void save(User user);
-    User findById(int id);
+    Optional<User> findByUserId(String userId);
+    Optional<User> findById(int id);
 }

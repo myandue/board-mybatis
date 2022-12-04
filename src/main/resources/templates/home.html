@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<th:block layout:fragment="content">
     <h1>home</h1>
     <div th:if="${user}">
         <span th:text="${user.id}"></span>
         <span th:text="${user.name}"></span>
     </div>
-</body>
+</th:block>
 </html>

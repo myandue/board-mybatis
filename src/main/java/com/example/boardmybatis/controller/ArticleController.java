@@ -1,6 +1,7 @@
 package com.example.boardmybatis.controller;
 
 import com.example.boardmybatis.domain.Article;
+import com.example.boardmybatis.domain.User;
 import com.example.boardmybatis.service.ArticleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -15,12 +16,25 @@ public class ArticleController {
     private final ArticleService articleService;
 
     @GetMapping("/upload")
-    public String getUpload(){
+    public String getUpload(Model model,
+                            @SessionAttribute(name="loginUser", required = false) User user){
+        if(user==null){
+            return "redirect:/login";
+        }
+        model.addAttribute("title", "UPLOAD");
         return "/article/upload";
     }
 
     @PostMapping("/upload")
-    public String postUpload(Article article){
+    public String postUpload(Article article,
+                            @SessionAttribute(name="loginUser", required = false) User user)
+    {
+        if(user==null){
+            return "redirect:/login";
+        }
+        System.out.println("user = " + user);
+        article.setUserId(user.getId());
+        System.out.println("article = " + article);
         articleService.save(article);
         return "redirect:/article/"+article.getId();
     }
@@ -28,7 +42,9 @@ public class ArticleController {
     @GetMapping("/{id}")
     public String detail(Model model,
                          @PathVariable("id") int id){
-        model.addAttribute("article", articleService.findById(id));
+        Article article = articleService.findById(id);
+        model.addAttribute("article", article);
+        model.addAttribute("title", article.getTitle());
         return "/article/detail";
     }
 
@@ -36,6 +52,7 @@ public class ArticleController {
     public String getEditArticle(Model model,
                                  @PathVariable("id") int id){
         model.addAttribute("article",articleService.findById(id));
+        model.addAttribute("title","EDIT");
         return "/article/edit";
     }
 

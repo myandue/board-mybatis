@@ -5,6 +5,8 @@ import com.example.boardmybatis.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 @RequiredArgsConstructor
 public class MybatisUserRepository implements UserRepository{
@@ -16,7 +18,14 @@ public class MybatisUserRepository implements UserRepository{
     }
 
     @Override
-    public User findById(int id) {
+    public Optional<User> findByUserId(String userId) {
+
+        mapper.getByUserId(userId);
+        return mapper.getByUserId(userId);
+    }
+
+    @Override
+    public Optional<User> findById(int id) {
         return mapper.getById(id);
     }
 }
