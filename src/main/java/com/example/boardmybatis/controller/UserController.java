@@ -22,8 +22,11 @@ public class UserController
 
     @GetMapping("/{id}")
     public String userProfile(Model model,
-                              @PathVariable("id") int id){
-
+                              @PathVariable("id") int id,
+                              @SessionAttribute(name="loginUser", required=false) User loginUser){
+        if(loginUser!=null){
+            model.addAttribute("loginUser",loginUser);
+        }
         Optional<User> userTemp = userService.findById(id);
         if(userTemp.isEmpty()){
             return "redirect:/";

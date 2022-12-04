@@ -2,13 +2,13 @@
 <html lang="en" xmlns:th="http://www/thymeleaf.org">
     <div th:fragment="headerFragment">
         <nav class="nav">
-            <ul th:if="${user}">
+            <ul th:if="${loginUser}">
                 <li><a href="/">Home</a></li>
                 <li><a href="/article/upload">Upload</a></li>
-                <li><a th:href="@{/user/{id}(id=${user.id})}">Profile</a></li>
+                <li><a th:href="@{/user/{id}(id=${loginUser.id})}">Profile</a></li>
                 <li><a href="/user/logout">LogOut</a></li>
             </ul>
-            <ul th:unless="${user}">
+            <ul th:unless="${loginUser}">
                 <li><a href="/">Home</a></li>
                 <li><a href="/login">Upload</a></li>
                 <li><a href="/join">Join</a></li>

@@ -20,10 +20,11 @@ public class HomeController {
     @GetMapping("/")
     public String home(
             Model model,
-            @SessionAttribute(name="loginUser", required = false) User user
+            @SessionAttribute(name="loginUser", required = false) User loginUser
     ){
-        if(user!=null) {
-            model.addAttribute("user", user);
+        if(loginUser!=null) {
+            model.addAttribute("loginUser", loginUser);
+            System.out.println("loginUser = " + loginUser);
         }
         model.addAttribute("title", "HOME");
         return "home";

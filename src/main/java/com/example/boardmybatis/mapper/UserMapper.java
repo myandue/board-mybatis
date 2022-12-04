@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UserMapper {
 
     @Insert("INSERT INTO user(name, user_id, password) VALUES(#{user.name}, #{user.userId}, #{user.password})")
-    @Options(useGeneratedKeys = true, keyProperty = "id")
+    @Options(useGeneratedKeys = true ,keyProperty = "id", keyColumn = "id")
     int insert(@Param("user") User user);
 
     @Select("SELECT * FROM user WHERE user_id=#{userId}")

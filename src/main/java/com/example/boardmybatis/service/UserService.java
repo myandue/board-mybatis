@@ -34,6 +34,7 @@ public class UserService {
         if(user.getPassword().equals(password)){
             HttpSession session = request.getSession(true);
             session.setAttribute("loginUser", user);
+            System.out.println("user = " + user);
             return "yes";
         }else{
             return "pw";

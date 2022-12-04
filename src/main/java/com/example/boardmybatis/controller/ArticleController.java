@@ -17,24 +17,23 @@ public class ArticleController {
 
     @GetMapping("/upload")
     public String getUpload(Model model,
-                            @SessionAttribute(name="loginUser", required = false) User user){
-        if(user==null){
+                            @SessionAttribute(name="loginUser", required = false) User loginUser){
+        if(loginUser==null){
             return "redirect:/login";
         }
+        model.addAttribute("loginUser",loginUser);
         model.addAttribute("title", "UPLOAD");
         return "/article/upload";
     }
 
     @PostMapping("/upload")
     public String postUpload(Article article,
-                            @SessionAttribute(name="loginUser", required = false) User user)
+                            @SessionAttribute(name="loginUser", required = false) User loginUser)
     {
-        if(user==null){
+        if(loginUser==null){
             return "redirect:/login";
         }
-        System.out.println("user = " + user);
-        article.setUserId(user.getId());
-        System.out.println("article = " + article);
+        article.setUserId(loginUser.getId());
         articleService.save(article);
         return "redirect:/article/"+article.getId();
     }

@@ -1,6 +1,7 @@
 package com.example.boardmybatis.repository;
 
 import com.example.boardmybatis.domain.Article;
+import com.example.boardmybatis.domain.User;
 import com.example.boardmybatis.mapper.ArticleMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

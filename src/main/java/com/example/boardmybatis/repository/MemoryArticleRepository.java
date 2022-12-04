@@ -1,7 +1,7 @@
 package com.example.boardmybatis.repository;
 
 import com.example.boardmybatis.domain.Article;
-import org.springframework.stereotype.Repository;
+import com.example.boardmybatis.domain.User;
 
 import java.util.HashMap;
 import java.util.Map;

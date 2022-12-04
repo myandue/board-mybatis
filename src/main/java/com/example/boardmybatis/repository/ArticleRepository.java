@@ -1,6 +1,7 @@
 package com.example.boardmybatis.repository;
 
 import com.example.boardmybatis.domain.Article;
+import com.example.boardmybatis.domain.User;
 
 public interface ArticleRepository {
 
