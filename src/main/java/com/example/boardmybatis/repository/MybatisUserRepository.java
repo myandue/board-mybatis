@@ -19,13 +19,21 @@ public class MybatisUserRepository implements UserRepository{
 
     @Override
     public Optional<User> findByUserId(String userId) {
-
-        mapper.getByUserId(userId);
         return mapper.getByUserId(userId);
     }
 
     @Override
     public Optional<User> findById(int id) {
         return mapper.getById(id);
+    }
+
+    @Override
+    public void edit(User user) {
+        mapper.update(user);
+    }
+
+    @Override
+    public void delete(int id) {
+        mapper.delete(id);
     }
 }

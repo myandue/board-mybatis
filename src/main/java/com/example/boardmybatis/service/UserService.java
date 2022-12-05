@@ -25,6 +25,11 @@ public class UserService {
         return userRepository.findById(id);
     }
 
+    //웹에서 찾을 때는 userId로 찾기
+    public Optional<User> findByUserId(String userId){
+        return userRepository.findByUserId(userId);
+    }
+
     public String login(String userId, String password, HttpServletRequest request){
         Optional<User> userTemp= userRepository.findByUserId(userId);
         if(userTemp.isEmpty()){
@@ -34,11 +39,18 @@ public class UserService {
         if(user.getPassword().equals(password)){
             HttpSession session = request.getSession(true);
             session.setAttribute("loginUser", user);
-            System.out.println("user = " + user);
             return "yes";
         }else{
             return "pw";
         }
+    }
+
+    public void edit(User user){
+        userRepository.edit(user);
+    }
+
+    public void delete(int id){
+        userRepository.delete(id);
     }
 
 

@@ -20,7 +20,11 @@ public interface ArticleMapper {
 
     @Select("SELECT * FROM article WHERE user_id=#{userId}")
     @ResultMap("ArticleMap")
-    List<Article> getByUserId(@Param("userId") int userId);
+    List<Article> getByUserId(@Param("userId") String userId);
+
+    @Select("SELECT * FROM article")
+    @ResultMap("ArticleMap")
+    List<Article> getAll();
 
     @Update("UPDATE article SET title=#{article.title}, content=#{article.content} WHERE id=#{article.id}")
     int update(@Param("article") Article article);

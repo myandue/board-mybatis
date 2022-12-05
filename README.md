@@ -56,7 +56,7 @@
 
 <h3>home</h3>
 <ul>
-<li>'/' : 게시글 리스트(게시글 타이틀, 조회수, 작성자(profie링크)), 게시글 검색, 페이징처리</li>
+<li>'/' : 게시글 리스트(게시글 타이틀, 작성자(profie링크), 조회수), 게시글 검색, 페이징처리</li>
 <li>'/join' : 회원가입 -> 이름/추후 구현/이름, userId, pw, pw 확인</li>
 <li>'/login' : 로그인 -> 이름/추후 구현/userId, pw</li>
 </ul>
@@ -74,8 +74,8 @@
 <small>필드 : id, 이름, 게시글리스트, 패스워드(추후 추가), 프로필사진(추후 추가)</small>
 <ul>
 <li>'/user/{id}' : user profile -> 이름, 게시글리스트, 프로필사진 / 본인일시 수정, 삭제</li>
-<li>'/user/{id}/edit' : user profile 수정
-<li>'/user/{id}/delete' : user 삭제
+<li>'/user/{id}/edit' : user profile 수정 // pw 수정 창 별도 생성 
+<li>'/user/{id}/delete' : user 삭제 // edit 페이지에 존재
 </ul>
 
 

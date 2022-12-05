@@ -4,6 +4,27 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
 <th:block layout:fragment="content">
-    <h1 th:text="@{{name}의 Profile(name=${user.name})}"></h1>
+    <h1 th:text="@{{name}의 Profile(name=${user.userId})}"></h1>
+    <img src="#">
+    <h2 th:text="${user.name}"></h2>
+    <div th:if="${loginUser.id}==${user.id}">
+        <form th:action="@{{id}/edit(id=${user.userId})}" method="get">
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+    <table>
+        <thead>
+        <th>No.</th>
+        <th>제목</th>
+        </thead>
+        <tbody>
+        <tr th:each="article:${list}">
+            <td th:text="${articleStat.count}"></td>
+            <td>
+                <a th:text="${article.title}" th:href="@{/article/{id}(id=${article.id})}"></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </th:block>
 </html>

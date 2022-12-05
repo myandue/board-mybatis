@@ -5,6 +5,8 @@ import com.example.boardmybatis.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ArticleService {
@@ -25,5 +27,13 @@ public class ArticleService {
 
     public void delete(int id){
         articleRepository.delete(id);
+    }
+
+    public List<Article> listAll(){
+        return articleRepository.getAll();
+    }
+
+    public List<Article> findByUserId(String userId){
+        return articleRepository.getByUserId(userId);
     }
 }

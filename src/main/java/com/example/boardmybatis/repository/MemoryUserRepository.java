@@ -24,4 +24,14 @@ public class MemoryUserRepository implements UserRepository{
     public Optional<User> findById(int id) {
         return Optional.ofNullable(userMap.get(id));
     }
+
+    @Override
+    public void edit(User user) {
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
 }

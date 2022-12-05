@@ -5,7 +5,7 @@
             <ul th:if="${loginUser}">
                 <li><a href="/">Home</a></li>
                 <li><a href="/article/upload">Upload</a></li>
-                <li><a th:href="@{/user/{id}(id=${loginUser.id})}">Profile</a></li>
+                <li><a th:href="@{/user/{id}(id=${loginUser.userId})}">Profile</a></li>
                 <li><a href="/user/logout">LogOut</a></li>
             </ul>
             <ul th:unless="${loginUser}">

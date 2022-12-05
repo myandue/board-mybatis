@@ -1,9 +1,9 @@
 package com.example.boardmybatis.repository;
 
 import com.example.boardmybatis.domain.Article;
-import com.example.boardmybatis.domain.User;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class MemoryArticleRepository implements ArticleRepository{
@@ -28,5 +28,15 @@ public class MemoryArticleRepository implements ArticleRepository{
     @Override
     public void delete(int id) {
 
+    }
+
+    @Override
+    public List<Article> getAll() {
+        return null;
+    }
+
+    @Override
+    public List<Article> getByUserId(String userId) {
+        return null;
     }
 }

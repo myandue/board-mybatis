@@ -4,10 +4,23 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
 <th:block layout:fragment="content">
-    <h1>home</h1>
-    <div th:if="${user}">
-        <span th:text="${user.id}"></span>
-        <span th:text="${user.name}"></span>
-    </div>
+    <table>
+        <thead>
+            <th>No.</th>
+            <th>제목</th>
+            <th>작성자</th>
+        </thead>
+        <tbody>
+            <tr th:each="article:${list}">
+                <td th:text="${articleStat.count}"></td>
+                <td>
+                    <a th:text="${article.title}" th:href="@{/article/{id}(id=${article.id})}"></a>
+                </td>
+                <td>
+                    <a th:text="${article.userId}" th:href="@{/user/{id}(id=${article.userId})}"></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </th:block>
 </html>

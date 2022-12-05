@@ -9,4 +9,6 @@ public interface UserRepository {
     void save(User user);
     Optional<User> findByUserId(String userId);
     Optional<User> findById(int id);
+    void edit(User user);
+    void delete(int id);
 }

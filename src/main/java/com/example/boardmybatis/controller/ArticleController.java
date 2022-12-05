@@ -33,14 +33,15 @@ public class ArticleController {
         if(loginUser==null){
             return "redirect:/login";
         }
-        article.setUserId(loginUser.getId());
+        article.setUserId(loginUser.getUserId());
         articleService.save(article);
         return "redirect:/article/"+article.getId();
     }
 
     @GetMapping("/{id}")
     public String detail(Model model,
-                         @PathVariable("id") int id){
+                         @PathVariable("id") int id,
+                         @SessionAttribute(name="loginUser", required = false) User loginUser){
         Article article = articleService.findById(id);
         model.addAttribute("article", article);
         model.addAttribute("title", article.getTitle());
@@ -49,7 +50,8 @@ public class ArticleController {
 
     @GetMapping("/{id}/edit")
     public String getEditArticle(Model model,
-                                 @PathVariable("id") int id){
+                                 @PathVariable("id") int id,
+                                 @SessionAttribute(name="loginUser", required = false) User loginUser){
         model.addAttribute("article",articleService.findById(id));
         model.addAttribute("title","EDIT");
         return "/article/edit";

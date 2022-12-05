@@ -1,6 +1,9 @@
 package com.example.boardmybatis.controller;
 
+import com.example.boardmybatis.domain.Article;
 import com.example.boardmybatis.domain.User;
+import com.example.boardmybatis.mapper.UserMapper;
+import com.example.boardmybatis.service.ArticleService;
 import com.example.boardmybatis.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -11,11 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.List;
+
 @Controller
 @RequiredArgsConstructor
 public class HomeController {
 
     private final UserService userService;
+    private final ArticleService articleService;
 
     @GetMapping("/")
     public String home(
@@ -27,11 +33,15 @@ public class HomeController {
             System.out.println("loginUser = " + loginUser);
         }
         model.addAttribute("title", "HOME");
+        List<Article> articleList = articleService.listAll();
+        model.addAttribute("list",articleList);
+
         return "home";
     }
 
     @GetMapping("/join")
-    public String getJoin(Model model){
+    public String getJoin(Model model,
+                          @SessionAttribute(name="loginUser", required = false) User loginUser){
         model.addAttribute("title","JOIN");
         return "join";
     }
@@ -44,7 +54,8 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String getLogin(Model model){
+    public String getLogin(Model model,
+                           @SessionAttribute(name="loginUser", required = false) User loginUser){
         model.addAttribute("title","LOG-IN");
         return "login";
     }
