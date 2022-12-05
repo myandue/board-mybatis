@@ -59,8 +59,9 @@ public class UserController
         return "/user/edit";
     }
 
-    @PutMapping("/{id}/edit")
+    @PutMapping("/{userId}/edit")
     public String putEditUser(User user){
+        System.out.println("user = " + user);
         userService.edit(user);
         return "redirect:/login";
     }

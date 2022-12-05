@@ -25,7 +25,8 @@ public interface UserMapper {
     @ResultMap("UserMap")
     Optional<User> getById(@Param("id") int id);
 
-    @Update("UPDATE user SET name=#{user.name}, password=#{user.password} WHERE id=#{user.id}")
+    @Update("UPDATE user SET name=#{user.name}, password=#{user.password} WHERE user_id=#{user.userId}")
+    @ResultMap("UserMap")
     int update(@Param("user") User user);
 
     @Delete("DELETE FROM user WHERE id=#{id}")
