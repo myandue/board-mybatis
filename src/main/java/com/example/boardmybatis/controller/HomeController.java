@@ -31,7 +31,6 @@ public class HomeController {
     ){
         if(loginUser!=null) {
             model.addAttribute("loginUser", loginUser);
-            System.out.println("loginUser = " + loginUser);
         }
         model.addAttribute("title", "HOME");
         List<Article> articleList = articleService.listAll();
@@ -50,10 +49,17 @@ public class HomeController {
     @PostMapping("/join")
     public String postJoin(User user,
                            @Param("passwordConfirm") String passwordConfirm,
-                           HttpServletRequest request){
+                           HttpServletRequest request,
+                           Model model){
         String join = userService.join(user, passwordConfirm);
-        if(join.equals("no")){
-            return "redirect:/";
+        if(join.equals("pw")){
+            model.addAttribute("msg", "Password is not same.");
+            model.addAttribute("searchUrl", "join");
+            return "msg";
+        } else if(join.equals("userId")){
+            model.addAttribute("msg", "The Id is already used.");
+            model.addAttribute("searchUrl","join");
+            return "msg";
         }
         userService.login(user.getUserId(), user.getPassword(), request);
         return "redirect:user/"+user.getId();
@@ -69,18 +75,20 @@ public class HomeController {
     @PostMapping("/login")
     public String postLogin(@RequestParam("userId") String userId,
                             @RequestParam("password") String password,
-                            HttpServletRequest request){
+                            HttpServletRequest request,
+                            Model model){
         String status = userService.login(userId, password, request);
         if(status.equals("no")){
-            //그런 회원 없습니다 메시지
-            return "redirect:/login";
+            model.addAttribute("msg", "The user doesn't exist.");
+            model.addAttribute("searchUrl","login");
+            return "msg";
         }
         if(status.equals("yes")){
-            //성공 메시지
             return "redirect:/";
         }else{
-            //패스워드 틀림 메시지
-            return "redirect:/login";
+            model.addAttribute("msg", "Password is not correct.");
+            model.addAttribute("searchUrl", "login");
+            return "msg";
         }
     }
 }

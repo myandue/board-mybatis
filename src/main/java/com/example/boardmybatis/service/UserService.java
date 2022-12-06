@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 import org.springframework.web.server.session.WebSessionManager;
 
 import java.util.Optional;
@@ -19,11 +20,12 @@ public class UserService {
 
     public String join(User user, String passwordConfirm){
         if(!passwordConfirm.equals(user.getPassword())){
-            //pw 틀렸습니다 메시지
-            return "no";
+            return "pw";
+        }else if(!userRepository.findByUserId(user.getUserId()).isEmpty()){
+            return "userId";
         }
         userRepository.save(user);
-        return "yse";
+        return "save";
     }
 
     public Optional<User> findById(int id){
