@@ -7,10 +7,10 @@
     <h1 th:text="${article.title}"></h1>
     <samll><a th:text="${article.userId}" th:href="@{/user/{id}(id=${article.userId})}"></a></samll>
     <p th:text="${article.content}"></p>
-    <form th:action="@{{id}/edit(id=${article.id})}" method="get">
+    <form th:if=${sameUser} th:action="@{{id}/edit(id=${article.id})}" method="get">
         <input type="submit" value="Edit">
     </form>
-    <form th:action="@{{id}/delete(id=${article.id})}" method="post">
+    <form th:if="${sameUser}" th:action="@{{id}/delete(id=${article.id})}" method="post">
         <input type="hidden" name="_method" value="delete"/>
         <input type="submit" value="Delete">
     </form>

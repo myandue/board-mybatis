@@ -19,7 +19,9 @@ public class ArticleController {
     public String getUpload(Model model,
                             @SessionAttribute(name="loginUser", required = false) User loginUser){
         if(loginUser==null){
-            return "redirect:/login";
+            model.addAttribute("msg", "Only user have access.");
+            model.addAttribute("searchUrl","login");
+            return "msg";
         }
         model.addAttribute("loginUser",loginUser);
         model.addAttribute("title", "UPLOAD");
@@ -45,6 +47,11 @@ public class ArticleController {
         Article article = articleService.findById(id);
         model.addAttribute("article", article);
         model.addAttribute("title", article.getTitle());
+        if(loginUser!=null) {
+            if (article.getUserId().equals(loginUser.getUserId())) {
+                model.addAttribute("sameUser", 1);
+            }
+        }
         return "/article/detail";
     }
 
@@ -52,6 +59,9 @@ public class ArticleController {
     public String getEditArticle(Model model,
                                  @PathVariable("id") int id,
                                  @SessionAttribute(name="loginUser", required = false) User loginUser){
+        if(!articleService.findById(id).getUserId().equals(loginUser.getUserId())){
+            return "redirect:/article/" + id;
+        }
         model.addAttribute("article",articleService.findById(id));
         model.addAttribute("title","EDIT");
         return "/article/edit";

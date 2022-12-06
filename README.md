@@ -57,8 +57,8 @@
 <h3>home</h3>
 <ul>
 <li>'/' : 게시글 리스트(게시글 타이틀, 작성자(profie링크), 조회수), 게시글 검색, 페이징처리</li>
-<li>'/join' : 회원가입 -> 이름/추후 구현/이름, userId, pw, pw 확인</li>
-<li>'/login' : 로그인 -> 이름/추후 구현/userId, pw</li>
+<li>'/join' : 회원가입 -> 이름, userId, pw, pw 확인</li>
+<li>'/login' : 로그인 -> userId, pw</li>
 </ul>
 
 <h3>article</h3>
