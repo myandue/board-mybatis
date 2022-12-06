@@ -17,8 +17,13 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public void join(User user){
+    public String join(User user, String passwordConfirm){
+        if(!passwordConfirm.equals(user.getPassword())){
+            //pw 틀렸습니다 메시지
+            return "no";
+        }
         userRepository.save(user);
+        return "yse";
     }
 
     public Optional<User> findById(int id){

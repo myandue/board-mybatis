@@ -7,6 +7,7 @@ import com.example.boardmybatis.service.ArticleService;
 import com.example.boardmybatis.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -47,8 +48,13 @@ public class HomeController {
     }
 
     @PostMapping("/join")
-    public String postJoin(User user, HttpServletRequest request){
-        userService.join(user);
+    public String postJoin(User user,
+                           @Param("passwordConfirm") String passwordConfirm,
+                           HttpServletRequest request){
+        String join = userService.join(user, passwordConfirm);
+        if(join.equals("no")){
+            return "redirect:/";
+        }
         userService.login(user.getUserId(), user.getPassword(), request);
         return "redirect:user/"+user.getId();
     }
