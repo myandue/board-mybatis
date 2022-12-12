@@ -1,6 +1,7 @@
 package com.example.boardmybatis.service;
 
 import com.example.boardmybatis.domain.Article;
+import com.example.boardmybatis.mapper2.ArticleMapper;
 import com.example.boardmybatis.repository.ArticleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,7 @@ import java.util.List;
 public class ArticleService {
 
     private final ArticleRepository articleRepository;
+    private final ArticleMapper articleMapper;
 
     public void save(Article article){
         articleRepository.save(article);

@@ -3,34 +3,28 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!-- 네임스페이스를 정해줍니다. 네임스페이스는 중복되면 안됩니다. -->
-<mapper namespace="mapper.user">
-    <!-- typeAlias에서 지정한 memberVO 빈에 저장합니다. -->
-    <!-- type="java.util.HashMap" 으로 받을수 있습니다. -->
+<mapper namespace="com.example.boardmybatis.mapper2.ArticleMapper">
     <resultMap id="userResult" type="user">
-        <!-- column에 memberVO와 같은 속성 값을 넣어줍니다. -->
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result property="userId" column="user_id"/>
         <result property="password" column="password"/>
     </resultMap>
 
-    <!-- 반환되는 값을 memResult에 담습니다. -->
     <insert id="insert" parameterType="user">
         INSERT INTO user(name, user_id, password) VALUES(#{user.name}, #{user.userId}, #{user.password})
     </insert>
 
-
-    <select id="selectAllMemberList" resultMap="articleMap">
-        <!-- <![CDATA[...]] 쿼리문의 >,< 등을 구분해주기 위해-->
-        <![CDATA[
-			SELECT
-				  ID
-				, PW AS pwd
-				, NAME
-				, EMAIL
-				, JOINDATE
-			FROM TEST_TABLE
-		]]>
+    <select id="select" resultMap="userResult">
+        SELECT * FROM user
+        <where>
+            <if test="userId!=null">
+                AND user_id=#{userId}
+            </if>
+            <if test="id!=null">
+                AND id=#{id}
+            </if>
+        </where>
     </select>
+
 </mapper>
