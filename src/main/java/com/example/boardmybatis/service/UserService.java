@@ -16,8 +16,6 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
-//    private final UserRepository userRepository;
     private final UserMapper userMapper;
 //
 //    public String join(User user, String passwordConfirm){
@@ -30,31 +28,30 @@ public class UserService {
 //        return "save";
 //    }
 //
-//    public Optional<User> findById(int id){
-//        return userRepository.findById(id);
-//    }
+    public Optional<User> findById(int id){
+        return userMapper.select(id);
+    }
 
     //웹에서 찾을 때는 userId로 찾기
     public Optional<User> findByUserId(String userId){
-        //return userRepository.findByUserId(userId);
         return userMapper.select(userId);
     }
-//
-//    public String login(String userId, String password, HttpServletRequest request){
-//        Optional<User> userTemp= userRepository.findByUserId(userId);
-//        if(userTemp.isEmpty()){
-//            return "no";
-//        }
-//        User user = userTemp.get();
-//        if(user.getPassword().equals(password)){
-//            HttpSession session = request.getSession(true);
-//            session.setAttribute("loginUser", user);
-//            return "yes";
-//        }else{
-//            return "pw";
-//        }
-//    }
-//
+
+    public String login(String userId, String password, HttpServletRequest request){
+        Optional<User> userTemp= userMapper.select(userId);
+        if(userTemp.isEmpty()){
+            return "no";
+        }
+        User user = userTemp.get();
+        if(user.getPassword().equals(password)){
+            HttpSession session = request.getSession(true);
+            session.setAttribute("loginUser", user);
+            return "yes";
+        }else{
+            return "pw";
+        }
+    }
+
 //    public void edit(User user){
 //        userRepository.edit(user);
 //    }

@@ -2,11 +2,13 @@ package com.example.boardmybatis.mapper2;
 
 import com.example.boardmybatis.domain.User;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Mapper
 public interface UserMapper {
 
-    Optional<User> select(Object vo);
+    void insert(User user);
+    Optional<User> select(String userId);
+    Optional<User> select(int id);
 }

@@ -5,14 +5,11 @@
 <configuration>
     <settings>
         <setting name="jdbcTypeForNull" value="NULL"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
-        <typeAlias type="com.example.boardmybatis.domain.User" alias="user"></typeAlias>
-        <typeAlias type="com.example.boardmybatis.domain.Article" alias="article"></typeAlias>
+        <typeAlias type="com.example.boardmybatis.domain.User" alias="User"></typeAlias>
+        <typeAlias type="com.example.boardmybatis.domain.Article" alias="Article"></typeAlias>
     </typeAliases>
 
-    <mappers>
-        <mapper resource="mappers/article.xml"/>
-        <mapper resource="mappers/user.xml"/>
-    </mappers>
 </configuration>

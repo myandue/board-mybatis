@@ -4,27 +4,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.example.boardmybatis.mapper2.UserMapper">
-    <resultMap id="userResult" type="user">
+    <resultMap id="userMap" type="User">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result property="userId" column="user_id"/>
         <result property="password" column="password"/>
     </resultMap>
 
-    <insert id="insert" parameterType="user">
-        INSERT INTO user(name, user_id, password) VALUES(#{user.name}, #{user.userId}, #{user.password})
+    <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user(name, user_id, password) VALUES(#{name}, #{userId}, #{password})
     </insert>
 
-    <select id="select" resultMap="userResult">
+    <select id="select" resultMap="userMap">
         SELECT * FROM user
-        <where>
-            <if test="userId!=null">
-                AND user_id=#{userId}
-            </if>
-            <if test="id!=null">
-                AND id=#{id}
-            </if>
-        </where>
+        <choose>
+            <when test="userId!=null">
+                WHERE user_id=#{userId}
+            </when>
+            <when test="id!=null">
+                WHERE id=#{id}
+            </when>
+        </choose>
     </select>
 
 </mapper>

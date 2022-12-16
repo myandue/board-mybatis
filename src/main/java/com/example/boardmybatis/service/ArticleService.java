@@ -12,30 +12,29 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ArticleService {
 
-    private final ArticleRepository articleRepository;
     private final ArticleMapper articleMapper;
-
-    public void save(Article article){
-        articleRepository.save(article);
-    }
+//
+//    public void save(Article article){
+//        articleRepository.save(article);
+//    }
 
     public Article findById(int id){
-        return articleRepository.findById(id);
+        return articleMapper.select(id);
     }
-
-    public void edit(Article article){
-        articleRepository.edit(article);
-    }
-
-    public void delete(int id){
-        articleRepository.delete(id);
-    }
+//
+//    public void edit(Article article){
+//        articleRepository.edit(article);
+//    }
+//
+//    public void delete(int id){
+//        articleRepository.delete(id);
+//    }
 
     public List<Article> listAll(){
-        return articleRepository.getAll();
+        return articleMapper.select();
     }
 
     public List<Article> findByUserId(String userId){
-        return articleRepository.getByUserId(userId);
+        return articleMapper.select(userId);
     }
 }
