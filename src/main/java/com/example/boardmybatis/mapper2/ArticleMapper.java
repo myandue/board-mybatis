@@ -13,5 +13,6 @@ public interface ArticleMapper {
     List<Article> select();
     List<Article> select(String userId);
     void update(Article article);
+    void articleHitsUpdate(int id);
     void delete(int id);
 }

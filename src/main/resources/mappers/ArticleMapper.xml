@@ -9,10 +9,11 @@
         <result column="title" property="title"/>
         <result property="content" column="content"/>
         <result property="userId" column="user_id"/>
+        <result property="hits" column="hits"/>
     </resultMap>
 
     <insert id="insert" parameterType="Article" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO article(title, content, user_id) VALUES(#{title}, #{content}, #{userId})
+        INSERT INTO article(title, content, user_id, hits) VALUES(#{title}, #{content}, #{userId}, #{hits})
     </insert>
 
     <select id="select" resultMap="articleMap">
@@ -29,6 +30,10 @@
 
     <update id="update" parameterType="Article">
         UPDATE article SET title=#{title}, content=#{content} WHERE id=#{id}
+    </update>
+
+    <update id="articleHitsUpdate" parameterType="int">
+        UPDATE article SET hits=hits+1 WHERE id=#{id}
     </update>
 
     <delete id="delete" parameterType="int">

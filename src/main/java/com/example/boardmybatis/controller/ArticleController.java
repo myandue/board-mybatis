@@ -35,6 +35,7 @@ public class ArticleController {
         if(loginUser==null){
             return "redirect:/login";
         }
+        article.setHits(0);
         article.setUserId(loginUser.getUserId());
         articleService.save(article);
         return "redirect:/article/"+article.getId();
@@ -44,6 +45,7 @@ public class ArticleController {
     public String detail(Model model,
                          @PathVariable("id") int id,
                          @SessionAttribute(name="loginUser", required = false) User loginUser){
+        articleService.articleHitsUpdate(id);
         Article article = articleService.findById(id);
         model.addAttribute("article", article);
         model.addAttribute("title", article.getTitle());

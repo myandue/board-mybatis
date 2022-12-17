@@ -3,6 +3,8 @@ package com.example.boardmybatis.service;
 import com.example.boardmybatis.domain.Article;
 import com.example.boardmybatis.mapper2.ArticleMapper;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,6 +25,10 @@ public class ArticleService {
 
     public void edit(Article article){
         articleMapper.update(article);
+    }
+
+    public void articleHitsUpdate(int id){
+        articleMapper.articleHitsUpdate(id);
     }
 
     public void delete(int id){
