@@ -7,7 +7,7 @@
     <h1 th:text="@{{name}의 Profile(name=${user.userId})}"></h1>
     <img src="#">
     <h2 th:text="${user.name}"></h2>
-    <div th:if="${loginUser.id}==${user.id}">
+    <div th:if="${loginUser} and ${loginUser.id}==${user.id}">
         <form th:action="@{{id}/edit(id=${user.userId})}" method="get">
             <input type="submit" value="Edit">
         </form>

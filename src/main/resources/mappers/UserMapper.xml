@@ -9,6 +9,7 @@
         <result column="name" property="name"/>
         <result property="userId" column="user_id"/>
         <result property="password" column="password"/>
+        <collection property="articleList" javaType="List" column="user_id" ofType="Article" select="com.example.boardmybatis.mapper2.ArticleMapper.select"></collection>
     </resultMap>
 
     <insert id="insert" parameterType="User" useGeneratedKeys="true" keyProperty="id">
@@ -27,4 +28,11 @@
         </choose>
     </select>
 
+    <update id="update" parameterType="User">
+        UPDATE user SET name=#{name}, password=#{password} WHERE user_id=#{userId}
+    </update>
+
+    <delete id="delete" parameterType="int">
+        DELETE FROM user WHERE id=#{id}
+    </delete>
 </mapper>

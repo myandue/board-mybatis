@@ -2,14 +2,10 @@ package com.example.boardmybatis.service;
 
 import com.example.boardmybatis.domain.User;
 import com.example.boardmybatis.mapper2.UserMapper;
-import com.example.boardmybatis.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
-import org.springframework.web.server.session.WebSessionManager;
 
 import java.util.Optional;
 
@@ -17,17 +13,17 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserMapper userMapper;
-//
-//    public String join(User user, String passwordConfirm){
-//        if(!passwordConfirm.equals(user.getPassword())){
-//            return "pw";
-//        }else if(!userRepository.findByUserId(user.getUserId()).isEmpty()){
-//            return "userId";
-//        }
-//        userRepository.save(user);
-//        return "save";
-//    }
-//
+
+    public String join(User user, String passwordConfirm){
+        if(!passwordConfirm.equals(user.getPassword())){
+            return "pw";
+        }else if(!userMapper.select(user.getUserId()).isEmpty()){
+            return "userId";
+        }
+        userMapper.insert(user);
+        return "save";
+    }
+
     public Optional<User> findById(int id){
         return userMapper.select(id);
     }
@@ -52,13 +48,13 @@ public class UserService {
         }
     }
 
-//    public void edit(User user){
-//        userRepository.edit(user);
-//    }
-//
-//    public void delete(int id){
-//        userRepository.delete(id);
-//    }
-//
+    public void edit(User user){
+        userMapper.update(user);
+    }
+
+    public void delete(int id){
+        userMapper.delete(id);
+    }
+
 
 }

@@ -58,18 +58,18 @@ public class UserController
         model.addAttribute("title", "EDIT");
         return "/user/edit";
     }
-//
-//    @PutMapping("/{userId}/edit")
-//    public String putEditUser(User user){
-//        userService.edit(user);
-//        return "redirect:/login";
-//    }
-//
-//    @DeleteMapping("/{id}/delete")
-//    public String deleteUser(@PathVariable("id") int id){
-//        userService.delete(id);
-//        return "redirect:/";
-//    }
+
+    @PutMapping("/{userId}/edit")
+    public String putEditUser(User user){
+        userService.edit(user);
+        return "redirect:/login";
+    }
+
+    @DeleteMapping("/{id}/delete")
+    public String deleteUser(@PathVariable("id") int id){
+        userService.delete(id);
+        return "redirect:/";
+    }
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request){
