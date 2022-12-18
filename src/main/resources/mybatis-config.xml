@@ -10,6 +10,7 @@
     <typeAliases>
         <typeAlias type="com.example.boardmybatis.domain.User" alias="User"></typeAlias>
         <typeAlias type="com.example.boardmybatis.domain.Article" alias="Article"></typeAlias>
+        <typeAlias type="com.example.boardmybatis.domain.Reply" alias="Reply"></typeAlias>
     </typeAliases>
 
 </configuration>

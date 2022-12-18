@@ -53,6 +53,7 @@ public class ArticleController {
             if (article.getUserId().equals(loginUser.getUserId())) {
                 model.addAttribute("sameUser", 1);
             }
+            model.addAttribute("loginUser", loginUser);
         }
         return "/article/detail";
     }
