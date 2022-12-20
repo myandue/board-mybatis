@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/replies")
+@RequestMapping("/reply")
 @RequiredArgsConstructor
 public class ReplyController {
 

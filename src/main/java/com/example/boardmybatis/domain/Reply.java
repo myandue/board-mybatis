@@ -1,5 +1,6 @@
 package com.example.boardmybatis.domain;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import lombok.Data;
 
 import java.sql.Date;
