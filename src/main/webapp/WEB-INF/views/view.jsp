@@ -1,32 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{fragments/layout}">
-<th:block layout:fragment="content">
-    <h1 th:text="${article.title}"></h1>
-    <small><a th:text="${article.userId}" th:href="@{/user/{id}(id=${article.userId})}"></a></small>
-    <p th:text="${article.content}"></p>
-    <small th:text="${article.hits}"></small>
-    <form th:if=${sameUser} th:action="@{{id}/edit(id=${article.id})}" method="get">
-        <input type="submit" value="Edit">
-    </form>
-    <form th:if="${sameUser}" th:action="@{{id}/delete(id=${article.id})}" method="post">
-        <input type="hidden" name="_method" value="delete"/>
-        <input type="submit" value="Delete">
-    </form>
-
-    <div>
-        <form>
-            <input id="newReplyText" type="text" placeholder="Write a comment."/>
-            <input id="newReplyWriter" type="text" placeholder="작성자"/>
-            <button type="button">Comment</button>
-        </form>
-    </div>
-
-    <div class="card-body">
-
-    </div>
-</th:block>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HelloWorld!</title>
+</head>
+<body>
+    <h1>JSP Hello!</h1>
+</body>
 </html>

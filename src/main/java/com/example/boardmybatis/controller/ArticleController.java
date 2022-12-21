@@ -55,8 +55,7 @@ public class ArticleController {
             }
             model.addAttribute("loginUser", loginUser);
         }
-//        return "/article/detail";
-        return "view";
+        return "/article/detail";
     }
 
     @GetMapping("/{id}/edit")
