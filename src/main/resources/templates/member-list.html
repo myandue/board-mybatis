@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div id="memberListContent">
+
+  <ul>
+    <li th:each="member: ${members}" th:text="|${member.email} , ${member.name}|"></li>
+  </ul>
+
+  <!-- Page Marker -->
+
+</div>
+
+</html>

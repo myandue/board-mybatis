@@ -3,6 +3,7 @@ package com.example.boardmybatis.mapper2;
 import com.example.boardmybatis.domain.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Mapper
@@ -13,4 +14,7 @@ public interface UserMapper {
     Optional<User> select(int id);
     void update(User user);
     void delete(int id);
+
+    //test
+    List<User> select();
 }

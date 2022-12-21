@@ -23,11 +23,6 @@ public class HomeController {
     private final UserService userService;
     private final ArticleService articleService;
 
-    @GetMapping("/test")
-    public String test(){
-        return "view";
-    }
-
     @GetMapping("/")
     public String home(
             Model model,
