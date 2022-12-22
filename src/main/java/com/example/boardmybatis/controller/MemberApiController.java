@@ -18,7 +18,6 @@ public class MemberApiController {
     @PostMapping("/members/search")
     public String searchMembers(Model model){
         List<User> findMembers = userService.findAll();
-        System.out.println("findMembers = " + findMembers);
         model.addAttribute("members", findMembers);
 
         return "member-list";

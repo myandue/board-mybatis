@@ -34,7 +34,12 @@ dependencies {
 
 	//ajax?
 	implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.14.1'
-	}
+
+	//jquery
+	implementation 'org.webjars.bower:jquery:3.6.2'
+	implementation 'org.webjars:jquery:3.6.1'
+
+}
 
 tasks.named('test') {
 	useJUnitPlatform()

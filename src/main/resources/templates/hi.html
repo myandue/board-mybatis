@@ -1,22 +1,15 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-
-<div class="container">
-    <h1>Ajax 호출</h1>
-    <button type="button" onclick="getMemberList()">모든 멤버 찾기</button>
-
-    <div id="memberListContent"></div>
-</div>
-
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script th:inline="javascript">
+
+</html>
+
+<script language="text/javascript">
     function getMemberList() {
         console.log("hi");
         $.ajax({
@@ -37,4 +30,3 @@
             })
     }
 </script>
-</html>

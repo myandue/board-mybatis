@@ -31,6 +31,7 @@ public class ReplyController {
     //Reply Register
     @PostMapping("")
     public ResponseEntity<String> register(@RequestBody Reply reply) {
+        System.out.println("post mapping reply = " + reply);
         ResponseEntity<String> entity = null;
         try {
             replyService.save(reply);
