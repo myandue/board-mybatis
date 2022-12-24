@@ -20,7 +20,7 @@
     function getMemberList() {
         console.log("hi");
         $.ajax({
-            type: "POST",
+            type: "get",
             url: "/members/search",
             // data: form, // api 호출을 위한 요청 변수가 필요하다면 사용해주세요.
             dataType: "text"

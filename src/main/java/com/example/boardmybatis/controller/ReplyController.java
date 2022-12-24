@@ -19,7 +19,7 @@ public class ReplyController {
     private final ReplyService replyService;
 
 
-    @PostMapping("/{id}")
+    @GetMapping("/{id}")
     private String getAllReply(Model model,
                                     @PathVariable("id") int articleId){
         List<Reply> replyList = replyService.listAll(articleId);
