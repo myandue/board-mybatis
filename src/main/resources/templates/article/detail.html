@@ -25,36 +25,19 @@
     </div>
 
     <div id="replyListBox"></div>
-</th:block>
-<th:block layout:fragment="script">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script th:inline="javascript">
     function getReplyList() {
-
-        var reply_text = $("#newReplyText");
-        var reply_writer = $("#newReplyWriter");
-
-        var reply_textVal = reply_text.val();
-        var reply_writerVal = reply_writer.val();
-
-        $.ajax({
-            type: "POST",
-            url: "/reply",
-            headers: {
-                "Content-Type" : "application/json",
-                "X-HTTP-Method-Override": "POST"
-            },
-            dataType: "text",
-            data: JSON.stringify({
-                content: reply_textVal,
-                writer: reply_writerVal
-            })
-        })
-            .done(function (result) {
-                console.log("result: " + result);
-                $("#replyListBox").replaceWith(result);
-            })
-        }
+        var article_id = parseInt(window.location.pathname.split('/').pop());
+        console.log(typeof(article_id));
+    }
+    $(window).load(function(){
+        getReplyList();
+    })
+    $(document).ready(function(){
+        getReplyList();
+    })
+    getReplyList();
     </script>
 </th:block>
 </html>

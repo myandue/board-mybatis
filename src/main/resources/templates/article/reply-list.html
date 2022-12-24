@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div id="replyListBox">
+
+  <ul>
+    <li th:each="reply: ${replies}" th:text="|${reply.content} , ${reply.writer}|"></li>
+  </ul>
+
+  <!-- Page Marker -->
+
+</div>
+
+</html>
