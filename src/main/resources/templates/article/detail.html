@@ -25,19 +25,26 @@
     </div>
 
     <div id="replyListBox"></div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script th:inline="javascript">
     function getReplyList() {
         var article_id = parseInt(window.location.pathname.split('/').pop());
-        console.log(typeof(article_id));
+        console.log(article_id);
+        $.ajax({
+            type: "POST",
+            url: "/reply/${article_id}",
+            dataType: "text"
+        })
+            .done(function (result) {
+                console.log(result);
+                $("#replyListBox").replaceWith(result);
+            })
     }
-    $(window).load(function(){
-        getReplyList();
-    })
     $(document).ready(function(){
         getReplyList();
     })
-    getReplyList();
     </script>
 </th:block>
 </html>

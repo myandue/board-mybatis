@@ -18,6 +18,17 @@ public class ReplyController {
 
     private final ReplyService replyService;
 
+
+    @PostMapping("/{id}")
+    private String getAllReply(Model model,
+                                    @PathVariable("id") int articleId){
+        List<Reply> replyList = replyService.listAll(articleId);
+        model.addAttribute("replies", replyList);
+        System.out.println("replyList = " + replyList);
+        return "reply-list";
+    }
+
+
     @PostMapping("")
     private List<Reply> uploadReply(Model model,
                                @PathVariable("id") int articleId,
@@ -29,6 +40,8 @@ public class ReplyController {
         replyService.save(reply);
         return replyService.listAll(articleId);
     }
+
+
 
 //    //Reply Register
 //    @PostMapping("")
