@@ -6,12 +6,13 @@ import com.example.boardmybatis.service.ReplyService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/reply")
 @RequiredArgsConstructor
 public class ReplyController {
@@ -19,26 +20,25 @@ public class ReplyController {
     private final ReplyService replyService;
 
 
-    @GetMapping("/{id}")
+    @PostMapping("/{id}")
     private String getAllReply(Model model,
                                     @PathVariable("id") int articleId){
         List<Reply> replyList = replyService.listAll(articleId);
         model.addAttribute("replies", replyList);
-        System.out.println("replyList = " + replyList);
-        return "reply-list";
+        return "article/reply-list";
     }
 
 
     @PostMapping("")
-    private List<Reply> uploadReply(Model model,
-                               @PathVariable("id") int articleId,
+    private ResponseEntity<String> uploadReply(Model model,
                                @RequestBody Reply reply,
                                @SessionAttribute(name="loginUser", required = false) User loginUser){
         if(loginUser==null){
         }
-        reply.setArticleId(articleId);
+        ResponseEntity<String> entity = null;
         replyService.save(reply);
-        return replyService.listAll(articleId);
+        entity =  new ResponseEntity<String>("regSuccess", HttpStatus.OK);
+        return entity;
     }
 
 

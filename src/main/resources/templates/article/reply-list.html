@@ -4,9 +4,18 @@
 
 <div id="replyListBox">
 
-  <ul>
-    <li th:each="reply: ${replies}" th:text="|${reply.content} , ${reply.writer}|"></li>
-  </ul>
+  <table>
+    <thead>
+      <th>댓글</th>
+      <th>작성자</th>
+    </thead>
+    <tbody>
+      <tr th:each="reply:${replies}">
+        <td th:text="${reply.content}"></td>
+        <td th:text="${reply.writer}"></td>
+      </tr>
+    </tbody>
+  </table>
 
   <!-- Page Marker -->
 

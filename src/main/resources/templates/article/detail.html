@@ -20,7 +20,7 @@
         <form>
             <input id="newReplyText" type="text" placeholder="Write a comment."/>
             <input id="newReplyWriter" type="text" placeholder="작성자"/>
-            <button type="button" onclick="getReplyList()">Comment</button>
+            <button id="uploadReply" type="button">Comment</button>
         </form>
     </div>
 
@@ -28,16 +28,60 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script th:inline="javascript">
-    function getReplyList() {
-        /*<![CDATA[*/
-        var article_id = /*[[ ${article.getId()} ]]*/;
-        /*]]>*/
-        console.log(typeof(article_id));
 
-    }
-    $(function(){
-        getReplyList();
-    });
+        /*<![CDATA[*/
+            var article_id = /*[[ ${article.getId()} ]]*/;
+        /*]]>*/
+
+        function getReplyList(){
+
+            $.ajax({
+                type: "post",
+                url: "/reply/"+article_id,
+                dataType: "text"
+            })
+            .done(function (result) {
+                $("#replyListBox").replaceWith(result);
+            })
+
+        }
+        function uploadReply(){
+            var reply_textObj = $("#newReplyText");
+            var reply_writerObj = $("#newReplyWriter");
+
+            var reply_textVal = reply_textObj.val();
+            var reply_writerVal = reply_writerObj.val();
+
+            $.ajax({
+                type: "POST",
+                url: "/reply",
+                headers: {
+                    "Content-Type" : "application/json",
+                    "X-HTTP-Method-Override": "POST"
+                },
+                dataType: "text",
+                data: JSON.stringify({
+                    articleId: article_id,
+                    content: reply_textVal,
+                    writer: reply_writerVal
+                })
+            })
+            .done(function (result) {
+                console.log(result);
+                getReplyList();
+                reply_textObj.val("");
+                reply_writerObj.val("");
+            })
+            .always(function (){
+                getReplyList();
+            })
+        }
+        $(document).ready(function(){
+            getReplyList();
+        });
+        $('#uploadReply').click(function(){
+            uploadReply();
+        });
     </script>
 </th:block>
 </html>
