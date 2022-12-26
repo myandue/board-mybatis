@@ -43,21 +43,21 @@ public class ReplyController {
 
 
 
-//    //Reply Register
-//    @PostMapping("")
-//    public ResponseEntity<String> register(@RequestBody Reply reply) {
-//        System.out.println("post mapping reply = " + reply);
-//        ResponseEntity<String> entity = null;
-//        try {
-//            replyService.save(reply);
-//            entity = new ResponseEntity<String>("regSuccess", HttpStatus.OK);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        }
-//        return entity;
-//    }
-//
+    //Reply Register
+    @PostMapping("")
+    public ResponseEntity<String> register(@RequestBody Reply reply) {
+        System.out.println("post mapping reply = " + reply);
+        ResponseEntity<String> entity = null;
+        try {
+            replyService.save(reply);
+            entity = new ResponseEntity<String>("regSuccess", HttpStatus.OK);
+        } catch (Exception e) {
+            e.printStackTrace();
+            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        return entity;
+    }
+
 //    //Reply List
 //    @GetMapping("/all/{articleId}")
 //    public ResponseEntity<List<Reply>> list(@PathVariable("articleId") int articleId) {
