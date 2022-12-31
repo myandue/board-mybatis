@@ -16,10 +16,9 @@
         <input type="submit" value="Delete">
     </form>
 
-    <div>
+    <div th:if="${loginUser}">
         <form>
             <input id="newReplyText" type="text" placeholder="Write a comment."/>
-            <input id="newReplyWriter" type="text" placeholder="작성자"/>
             <button id="uploadReply" type="button">Comment</button>
         </form>
     </div>
@@ -31,6 +30,7 @@
 
         /*<![CDATA[*/
             var article_id = /*[[ ${article.getId()} ]]*/;
+            var loginUser = "[[${loginUser}]]";
         /*]]>*/
 
         function getReplyList(){
@@ -47,10 +47,15 @@
         }
         function uploadReply(){
             var reply_textObj = $("#newReplyText");
-            var reply_writerObj = $("#newReplyWriter");
-
             var reply_textVal = reply_textObj.val();
-            var reply_writerVal = reply_writerObj.val();
+
+            var reply_writer=null;
+
+            /*<![CDATA[*/
+                if(loginUser){
+                    reply_writer = /*[[ ${loginUser.getUserId()} ]]*/;
+                }
+            /*]]>*/
 
             $.ajax({
                 type: "POST",
@@ -63,7 +68,7 @@
                 data: JSON.stringify({
                     articleId: article_id,
                     content: reply_textVal,
-                    writer: reply_writerVal
+                    writer: reply_writer
                 })
             })
             .done(function (result) {

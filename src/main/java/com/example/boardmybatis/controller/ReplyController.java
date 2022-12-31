@@ -33,8 +33,7 @@ public class ReplyController {
     private ResponseEntity<String> uploadReply(Model model,
                                @RequestBody Reply reply,
                                @SessionAttribute(name="loginUser", required = false) User loginUser){
-        if(loginUser==null){
-        }
+        model.addAttribute("loginUser", loginUser);
         ResponseEntity<String> entity = null;
         replyService.save(reply);
         entity =  new ResponseEntity<String>("regSuccess", HttpStatus.OK);
@@ -42,21 +41,21 @@ public class ReplyController {
     }
 
 
-
-    //Reply Register
-    @PostMapping("")
-    public ResponseEntity<String> register(@RequestBody Reply reply) {
-        System.out.println("post mapping reply = " + reply);
-        ResponseEntity<String> entity = null;
-        try {
-            replyService.save(reply);
-            entity = new ResponseEntity<String>("regSuccess", HttpStatus.OK);
-        } catch (Exception e) {
-            e.printStackTrace();
-            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        return entity;
-    }
+//
+//    //Reply Register
+//    @PostMapping("")
+//    public ResponseEntity<String> register(@RequestBody Reply reply) {
+//        System.out.println("post mapping reply = " + reply);
+//        ResponseEntity<String> entity = null;
+//        try {
+//            replyService.save(reply);
+//            entity = new ResponseEntity<String>("regSuccess", HttpStatus.OK);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//        return entity;
+//    }
 
 //    //Reply List
 //    @GetMapping("/all/{articleId}")
