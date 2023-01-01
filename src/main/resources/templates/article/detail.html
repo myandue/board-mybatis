@@ -30,7 +30,7 @@
 
         /*<![CDATA[*/
             var article_id = /*[[ ${article.getId()} ]]*/;
-            var loginUser = "[[${loginUser}]]";
+            var loginUser = /*[[ ${loginUser} ]]*/;
         /*]]>*/
 
         function getReplyList(){
@@ -75,7 +75,6 @@
                 console.log(result);
                 getReplyList();
                 reply_textObj.val("");
-                reply_writerObj.val("");
             })
             .always(function (){
                 getReplyList();
